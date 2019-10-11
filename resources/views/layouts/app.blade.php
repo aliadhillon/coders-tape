@@ -9,13 +9,7 @@
 <body>
     <div class="center">
         <a class="no-dec" href="/"><h2 class="title">Coder's Tape</h2></a>
-        <nav>
-            <ul>
-                <li><a class="{{ Request::is('/') ? 'active' : null }}" href="/">Welcome</a></li>
-                <li><a class="{{ Request::is('about') ? 'active' : null }}" href="/about">About Us</a></li>
-                <li><a class="{{ Request::is('services') ? 'active' : null }}" href="/services">Services</a></li>
-            </ul>
-        </nav>
+        @include('partials.nav')
         <hr>
     </div>
     <div class="content">
