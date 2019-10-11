@@ -1,3 +1,45 @@
+html, body {
+    font-family: Candara;
+}
 .center {
     text-align: center;
 }
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 50px;
+    color: black;
+}
+
+.no-dec {
+    text-decoration: none;
+}
+
+nav > ul {
+    list-style: none;
+}
+
+nav > ul > li {
+    display: inline;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 5px;
+    color: blue;
+}
+
+nav > ul > li > a:hover {
+    color: white;
+    background-color: blue;
+}
+
+.active {
+    color: white;
+    background-color: blue;
+}
+

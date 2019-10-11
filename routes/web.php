@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'WelcomeController@index');
+
+Route::view('about', 'about');
+Route::view('services', 'services');
