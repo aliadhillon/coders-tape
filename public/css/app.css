@@ -1,12 +1,16 @@
 html, body {
     font-family: Candara;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 .center {
     text-align: center;
 }
 
 .content {
-    text-align: center;
+    width: 40%;
+    margin-left: 10%;
 }
 
 .title {

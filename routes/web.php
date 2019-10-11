@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::view('about', 'about');
-Route::view('services', 'services');
+Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::get('/about', 'WelcomeController@about')->name('about');
+Route::get('/services', 'WelcomeController@services')->name('services');
