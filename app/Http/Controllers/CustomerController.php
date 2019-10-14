@@ -30,4 +30,9 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index');
     }
+
+    public function show(Customer $customer)
+    {
+        return view('customer.show', compact('customer'));
+    }
 }

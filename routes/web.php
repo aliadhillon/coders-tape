@@ -22,4 +22,9 @@ Route::prefix('customers')->as('customers.')->group(function(){
     Route::get('/', 'CustomerController@index')->name('index');
     Route::get('/create', 'CustomerController@create')->name('create');
     Route::post('/', 'CustomerController@store')->name('store');
+    Route::get('/{customer}', 'CustomerController@show')->name('show');
+});
+
+Route::fallback(function(){
+    return redirect('/');
 });

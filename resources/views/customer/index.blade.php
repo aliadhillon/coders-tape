@@ -7,7 +7,7 @@
     <p><a class="no-dec" href="{{ route('customers.create') }}">Add new Customer</a></p>
     <ul>
         @forelse ($customers as $customer)
-            <li><strong>{{ $customer->name }}</strong> &nbsp; -> {{ $customer->email }}</li> 
+            <li><a class="no-dec" href="{{ route('customers.show', compact('customer')) }}"><strong>{{ $customer->name }}</strong></a> &nbsp; -> {{ $customer->email }}</li> 
         @empty
             <p>No customers yet.</p>
         @endforelse

@@ -4,4 +4,7 @@
 
 @section('content')
     <h2>Welcome to our website</h2>
+    <p>
+        <a href="{{ url('/customers', [1]) }}">1st</a>        
+    </p>
 @endsection
