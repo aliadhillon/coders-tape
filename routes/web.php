@@ -12,4 +12,4 @@
 */
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
-Route::get('/services', 'WelcomeController@services')->name('services');
+Route::get('/services', 'ServiceController@index')->name('services');
