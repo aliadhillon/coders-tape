@@ -54,3 +54,7 @@ nav > ul > li > a:hover {
 .text-red {
     color: red;
 }
+
+.invalid {
+    border: 1px solid red;
+}

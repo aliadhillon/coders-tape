@@ -18,4 +18,16 @@ class CustomerController extends Controller
     {
         return view('customer.create');
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:customers']
+        ]);
+
+        Customer::create($validated);
+
+        return redirect()->route('customers.index');
+    }
 }

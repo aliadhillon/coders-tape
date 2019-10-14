@@ -20,4 +20,5 @@ Route::post('/services', 'ServiceController@store')->name('services.store');
 Route::prefix('customers')->as('customers.')->group(function(){
     Route::get('/', 'CustomerController@index')->name('index');
     Route::get('/create', 'CustomerController@create')->name('create');
+    Route::post('/', 'CustomerController@store')->name('store');
 });
