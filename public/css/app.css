@@ -55,10 +55,23 @@ nav > ul > li > a:hover {
     color: red;
 }
 
+.success-notify {
+    padding: 5px;
+    background-color: green;
+    color: white;
+}
+
 .invalid {
     border: 1px solid red;
 }
 
 .form-group {
     margin-bottom: 10px;
+}
+ 
+.button {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: rgb(34, 24, 80);
+    color: white;
 }

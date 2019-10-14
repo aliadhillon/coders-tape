@@ -17,7 +17,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <button type="submit">Save</button>
+            <button class="button" type="submit">Save</button>
         </div>
     </form>
     <h3>We provide following services</h3>

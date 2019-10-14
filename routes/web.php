@@ -23,6 +23,8 @@ Route::prefix('customers')->as('customers.')->group(function(){
     Route::get('/create', 'CustomerController@create')->name('create');
     Route::post('/', 'CustomerController@store')->name('store');
     Route::get('/{customer}', 'CustomerController@show')->name('show');
+    Route::get('/{customer}/edit', 'CustomerController@edit')->name('edit');
+    Route::put('/{customer}', 'CustomerController@update')->name('update');
 });
 
 Route::fallback(function(){

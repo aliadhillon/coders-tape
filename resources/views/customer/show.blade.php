@@ -8,7 +8,11 @@
         <a href="/customers">< Back</a>
     </div>
     <div>
+        @include('partials.success')
         <p>Name: {{ $customer->name }}</p>
         <p>Email: {{ $customer->email }}</p>
+    </div>
+    <div>
+        <a href="{{ route('customers.edit', compact('customer')) }}">Edit</a>
     </div>
 @endsection
