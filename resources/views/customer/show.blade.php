@@ -3,7 +3,7 @@
 @section('title', $customer->name)
     
 @section('content')
-    <h2>Customer</h2>
+    <h2>Customer Details</h2>
     <div>
         <a href="/customers">< Back</a>
     </div>
