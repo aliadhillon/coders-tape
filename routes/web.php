@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
-Route::get('/service', 'ServiceController@index')->name('service.index');
-Route::post('/service', 'ServiceController@store')->name('service.store');
+
+Route::get('/services', 'ServiceController@index')->name('services.index');
+Route::post('/services', 'ServiceController@store')->name('services.store');
+
+Route::prefix('customers')->as('customers.')->group(function(){
+    Route::get('/', 'CustomerController@index')->name('index');
+    Route::get('/create', 'CustomerController@create')->name('create');
+});

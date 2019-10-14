@@ -5,7 +5,7 @@
 @section('content')
     <h2>Services</h2>
     <hr>
-    <form action="{{ route('service.store') }}" method="post">
+    <form action="{{ route('services.store') }}" method="post">
         <h3>Create new Service</h3>
         @csrf
         <label for="name">Name:</label>

@@ -20,6 +20,10 @@ html, body {
 
 .no-dec {
     text-decoration: none;
+    color: black;
+}
+.no-dec:hover {
+    color: blue;
 }
 
 nav > ul {
