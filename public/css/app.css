@@ -58,3 +58,7 @@ nav > ul > li > a:hover {
 .invalid {
     border: 1px solid red;
 }
+
+.form-group {
+    margin-bottom: 10px;
+}
