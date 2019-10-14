@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -18,11 +19,7 @@ class WelcomeController extends Controller
 
     public function services()
     {
-        $services = [
-            'WebSite Development',
-            'Andriod Apps',
-            '.NET Applications'
-        ];   
+        $services = Service::all();
 
         return view('services', compact('services'));
     }

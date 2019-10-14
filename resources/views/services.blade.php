@@ -4,14 +4,12 @@
 
 @section('content')
     <h2>Services</h2>
-        @isset($services)
-        <h3>We provide following services</h3>
-            <ul>
-                @forelse ($services as $service)
-                    <li>{{ $service }}</li>
-                @empty
-                    <p>No services yet.</p>
-                @endforelse
-            </ul>
-        @endisset
+    <h3>We provide following services</h3>
+    <ul>
+        @forelse ($services as $service)
+            <li>{{ $service->name }}</li>
+        @empty
+            <p>No services yet.</p>
+        @endforelse
+    </ul>
 @endsection
