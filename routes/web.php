@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
 Route::get('/services', 'WelcomeController@services')->name('services');
