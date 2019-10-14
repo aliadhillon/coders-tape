@@ -47,3 +47,6 @@ nav > ul > li > a:hover {
     background-color: blue;
 }
 
+.text-red {
+    color: red;
+}

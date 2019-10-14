@@ -12,4 +12,5 @@
 */
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
-Route::get('/services', 'ServiceController@index')->name('services');
+Route::get('/service', 'ServiceController@index')->name('service.index');
+Route::post('/service', 'ServiceController@store')->name('service.store');
