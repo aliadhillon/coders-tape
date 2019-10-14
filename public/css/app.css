@@ -18,11 +18,20 @@ html, body {
     color: black;
 }
 
-.no-dec {
+a.no-dec {
     text-decoration: none;
     color: black;
 }
-.no-dec:hover {
+a.no-dec:hover {
+    color: blue;
+}
+
+a.item {
+    text-decoration: none;
+    color: black;
+}
+
+a.item:hover {
     color: blue;
 }
 
@@ -57,7 +66,7 @@ nav > ul > li > a:hover {
 
 .success-notify {
     padding: 5px;
-    background-color: green;
+    background-color: rgb(13, 139, 13);
     color: white;
 }
 
@@ -74,4 +83,38 @@ nav > ul > li > a:hover {
     padding: 5px;
     background-color: rgb(34, 24, 80);
     color: white;
+}
+
+.link-button {
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 3.5px 7px;
+    background-color: rgb(34, 24, 80);
+    color: white;
+}
+
+.link-button:hover {
+    background-color: blueviolet;
+    color: white;
+}
+
+.button:hover {
+    background-color: blueviolet;
+    color: white;
+}
+
+.red-button {
+    border: 1px solid black;
+    padding: 5px;
+    background-color:  rgb(185, 72, 87);
+    color: white;
+}
+
+.red-button:hover {
+    background-color: red;
+    color: white;
+}
+
+.inline {
+    display: inline;
 }

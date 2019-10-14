@@ -18,7 +18,7 @@
         <div class="form-group">
             <label for="email">Email:</label>
             <br>
-            <input class="@error('name') invalid @enderror" type="email" name="email" id="email" size="40" autocomplete="off" value="{{ old('email', $customer->email) }}">
+            <input class="@error('email') invalid @enderror" type="email" name="email" id="email" size="40" autocomplete="off" value="{{ old('email', $customer->email) }}">
             @error('email')
                 <span class="text-red">{{ $message }}</span>
             @enderror

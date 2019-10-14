@@ -25,6 +25,7 @@ Route::prefix('customers')->as('customers.')->group(function(){
     Route::get('/{customer}', 'CustomerController@show')->name('show');
     Route::get('/{customer}/edit', 'CustomerController@edit')->name('edit');
     Route::put('/{customer}', 'CustomerController@update')->name('update');
+    Route::delete('/{customer}', 'CustomerController@destroy')->name('destroy');
 });
 
 Route::fallback(function(){

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -19,16 +19,11 @@ class CustomerController extends Controller
         return view('customer.create');
     }
 
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:customers']
-        ]);
+        $customer = Customer::create($request->validated());
 
-        $customer = Customer::create($validated);
-
-        return redirect()->route('customers.index')->with('msg', "New Customer Added: {$customer->name}");
+        return redirect()->route('customers.show', compact('customer'));
     }
 
     public function show(Customer $customer)
@@ -41,14 +36,17 @@ class CustomerController extends Controller
         return view('customer.edit', compact('customer'));
     }
 
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerRequest $request, Customer $customer)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email']
-        ]);
-        $customer->update($validated);
+        $customer->update($request->validated());
 
         return redirect()->route('customers.show', compact('customer'))->with('msg', "Customer Updated Successfully");
+    }
+
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+
+        return redirect()->route('customers.index')->with('msg', "Customer deleted: {$customer->name}");
     }
 }

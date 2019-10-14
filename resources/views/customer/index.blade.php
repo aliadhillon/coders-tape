@@ -8,7 +8,7 @@
     @include('partials.success')
     <ul>
         @forelse ($customers as $customer)
-            <li><a class="no-dec" href="{{ route('customers.show', compact('customer')) }}"><strong>{{ $customer->name }}</strong></a> &nbsp; -> {{ $customer->email }}</li> 
+            <li><a class="item" href="{{ route('customers.show', compact('customer')) }}"><strong>{{ $customer->name }}</strong></a> &nbsp; -> {{ $customer->email }}</li> 
         @empty
             <p>No customers yet.</p>
         @endforelse

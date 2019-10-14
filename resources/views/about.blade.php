@@ -4,5 +4,5 @@
 
 @section('content')
     <h2>About Us</h2>
-    <p>We are lone programmers learining at home</p>
+    <p>I am a lone programmer trying to learn Laravel 6 at home.</p>
 @endsection
