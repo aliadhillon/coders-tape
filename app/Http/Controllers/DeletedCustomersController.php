@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Events\CustomerPermanentlyDeleted;
 use Illuminate\Http\Request;
 
 class DeletedCustomersController extends Controller
@@ -33,6 +34,8 @@ class DeletedCustomersController extends Controller
         $customer = Customer::onlyTrashed()->findOrFail($id);
 
         $customer->forceDelete();
+
+        event(new CustomerPermanentlyDeleted($customer));
 
         return redirect()->route('deleted-customers.index')->with('msg', "Customer Deleted Permanently: <strong>{$customer->name}</strong>");
     }
