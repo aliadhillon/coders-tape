@@ -4,6 +4,7 @@
 
 @section('content')
     <h2>Soft Deleted Customers</h2>
+    <a href="{{ route('customers.index') }}">All Customers</a>
     <p><a class="no-dec" href="{{ route('customers.create') }}">Add new Customer</a></p>
     @include('partials.success')
     <ol>

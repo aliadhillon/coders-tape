@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\CustomerDeleted;
 use App\Events\NewCustomerAdded;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Event;
 use App\Listeners\LogNewAddedCustomer;
-use App\Listeners\SendNewCustomerNotification;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\SendNewCustomerNotification;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen(CustomerDeleted::class, function(CustomerDeleted $event){
+            Log::info("Customer Deleted: {$event->customer->name}");
+        });
     }
 }
