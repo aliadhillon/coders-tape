@@ -27,6 +27,6 @@ class LogNewAddedCustomer
      */
     public function handle(NewCustomerAdded $event)
     {
-        Log::info("New Customer Added: {$event->customer->name}");
+        Log::info("New Customer Added:", ['name' => $event->customer->name, 'email' => $event->customer->email]);
     }
 }

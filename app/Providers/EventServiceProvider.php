@@ -39,7 +39,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Event::listen(CustomerDeleted::class, function(CustomerDeleted $event){
-            Log::info("Customer Deleted: {$event->customer->name}");
+            Log::info("Customer Deleted:", ['customer' => $event->customer]);
         });
     }
 }
