@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Events\NewCustomerAdded;
 use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
@@ -39,6 +40,8 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         $customer = Customer::create($request->validated());
+
+        event(new NewCustomerAdded($customer));
 
         return redirect()->route('customers.show', compact('customer'));
     }
