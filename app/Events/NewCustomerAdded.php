@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Customer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -21,7 +22,7 @@ class NewCustomerAdded
      *
      * @return void
      */
-    public function __construct($customer)
+    public function __construct(Customer $customer)
     {
         $this->customer = $customer;
     }

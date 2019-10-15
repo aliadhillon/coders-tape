@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Events\CustomerDeleted;
+use App\Events\CustomerPermanentlyDeleted;
 use App\Events\NewCustomerAdded;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Event;
 use App\Listeners\LogNewAddedCustomer;
+use App\Listeners\LogPermanentlyDeletedCustomer;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\SendNewCustomerNotification;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -26,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         NewCustomerAdded::class => [
             LogNewAddedCustomer::class,
             SendNewCustomerNotification::class
+        ],
+        CustomerPermanentlyDeleted::class => [
+            LogPermanentlyDeletedCustomer::class
         ]
     ];
 

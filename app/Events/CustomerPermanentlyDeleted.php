@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerDeleted
+class CustomerPermanentlyDeleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -24,7 +24,6 @@ class CustomerDeleted
      */
     public function __construct(Customer $customer)
     {
-        //
         $this->customer = $customer;
     }
 
