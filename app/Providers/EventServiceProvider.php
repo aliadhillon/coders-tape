@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\NewCustomerAdded;
 use App\Listeners\LogNewAddedCustomer;
+use App\Listeners\SendNewCustomerNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,7 +22,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         NewCustomerAdded::class => [
-            LogNewAddedCustomer::class
+            LogNewAddedCustomer::class,
+            SendNewCustomerNotification::class
         ]
     ];
 
