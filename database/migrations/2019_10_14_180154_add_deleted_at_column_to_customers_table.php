@@ -14,7 +14,7 @@ class AddDeletedAtColumnToCustomersTable extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->timestamp('deleted_at')->after('email')->nullable();
+            $table->softDeletes()->after('email');
         });
     }
 

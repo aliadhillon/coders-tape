@@ -28,6 +28,13 @@ Route::prefix('customers')->as('customers.')->group(function(){
     Route::delete('/{customer}', 'CustomerController@destroy')->name('destroy');
 });
 
+Route::prefix('deleted-customers')->as('deleted-customers.')->group(function(){
+    Route::get('/', 'DeletedCustomersController@index')->name('index');
+    Route::get('/{id}', 'DeletedCustomersController@show')->name('show');
+    Route::post('/{id}', 'DeletedCustomersController@restore')->name('restore');
+    Route::delete('/{id}', 'DeletedCustomersController@forceDelete')->name('force-delete');
+});
+
 Route::fallback(function(){
     return redirect('/');
 });

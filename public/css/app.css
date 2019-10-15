@@ -118,3 +118,7 @@ nav > ul > li > a:hover {
 .inline {
     display: inline;
 }
+
+.box {
+    margin-bottom: 10px;
+}
