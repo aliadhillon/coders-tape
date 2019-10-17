@@ -4,8 +4,9 @@
     
 @section('content')
     <h2>Edit Customer: {{ $customer->name }}</h2>
-    <form action="{{ route('customers.update', compact('customer')) }}" method="post">
-        @method('put')
+    <form action="{{ route('customers.update', compact('customer')) }}" method="post" enctype="multipart/form-data">
+
+        @method('PATCH')
 
         @include('partials.form')
 
