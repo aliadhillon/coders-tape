@@ -7,8 +7,11 @@
     <div>
         <a href="/customers">< Back</a>
     </div>
-    <div>
+    <div class="profile">
         @include('partials.success')
+        @isset($customer->image)
+            <img class="profile-photo" src="{{ Storage::url($customer->image) }}" alt="No image">
+        @endisset
         <p>Name: <strong>{{ $customer->name }}</strong></p>
         <p>Email: {{ $customer->email }}</p>
     </div>

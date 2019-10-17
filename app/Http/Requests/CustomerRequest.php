@@ -25,11 +25,21 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => [
+                'required',
+                'string'
+            ],
             'email' => [
                 'required',
                 'email',
                 Rule::unique('customers')->ignore($this->customer)
+            ],
+            'image' => [
+                'sometimes',
+                'required',
+                'file',
+                'image',
+                'max:2000'
             ]
         ];
     }

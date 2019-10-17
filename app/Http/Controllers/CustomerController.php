@@ -40,7 +40,11 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        $customer = Customer::create($request->validated());
+        $validated = $request->validated();
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->image->store('uploads', 'public');
+        }
+        $customer = Customer::create($validated);
 
         event(new NewCustomerAdded($customer));
 
@@ -55,6 +59,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+        // dd($customer->toArray());
         return view('customer.show', compact('customer'));
     }
 
@@ -78,7 +83,11 @@ class CustomerController extends Controller
      */
     public function update(CustomerRequest $request, Customer $customer)
     {
-        $customer->update($request->validated());
+        $validated = $request->validated();
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->image->store('uploads', 'public');
+        }
+        $customer->update($validated);
 
         return redirect()->route('customers.show', compact('customer'))->with('msg', "Customer Updated Successfully");
     }
@@ -96,5 +105,10 @@ class CustomerController extends Controller
         event(new CustomerDeleted($customer));
 
         return redirect()->route('customers.index')->with('msg', "Customer deleted: {$customer->name}");
+    }
+
+    public function validated(CustomerRequest $request)
+    {
+        
     }
 }
