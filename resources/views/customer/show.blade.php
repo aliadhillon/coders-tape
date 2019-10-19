@@ -9,13 +9,10 @@
     </div>
     <div class="profile">
         @include('partials.success')
-        @isset($customer->image)
-            <a href="{{ Storage::url($customer->image) }}" title="Click here to see full size image"><img class="profile-photo" src="{{ Storage::url($customer->image) }}" alt="No image"></a>
-        @endisset
         <p>Name: <strong>{{ $customer->name }}</strong></p>
         <p>Email: {{ $customer->email }}</p>
     </div>
-    <div>
+    <div class="box">
         <form action="{{ route('customers.destroy', compact('customer')) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -23,4 +20,7 @@
             <button class="red-button" type="submit" onclick="return confirm('Are sure to delete this one?');">Delete</button>
         </form>
     </div>
+    @isset($customer->image)
+        <a href="{{ Storage::url($customer->image) }}" title="Click here to see full size image"><img src="{{ Storage::url('small/' . $customer->image) }}" alt="No image"></a>
+    @endisset
 @endsection

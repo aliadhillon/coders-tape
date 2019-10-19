@@ -35,6 +35,6 @@ Route::prefix('deleted-customers')->as('deleted-customers.')->group(function(){
     Route::delete('/{id}', 'DeletedCustomersController@forceDelete')->name('force-delete');
 });
 
-Route::fallback(function(){
-    return redirect('/');
-});
+// Route::fallback(function(){
+//     return redirect('/');
+// });

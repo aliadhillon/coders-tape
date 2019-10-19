@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Events\CustomerDeleted;
 use App\Events\NewCustomerAdded;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\CustomerRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -41,11 +43,14 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         $validated = $request->validated();
+
         if ($request->hasFile('image')) {
             $validated['image'] = $request->image->store('uploads', 'public');
         }
 
         $customer = Customer::create($validated);
+
+        Image::make(public_path('storage/' . $customer->image))->fit(300, 300)->save(public_path('storage/small/' . $customer->image));
 
         event(new NewCustomerAdded($customer));
 
@@ -84,11 +89,20 @@ class CustomerController extends Controller
      */
     public function update(CustomerRequest $request, Customer $customer)
     {
+        
         $validated = $request->validated();
         if ($request->hasFile('image')) {
+            if($customer->image){
+                Storage::delete($customer->image);   
+            }
             $validated['image'] = $request->image->store('uploads', 'public');
         }
         $customer->update($validated);
+
+        // dd(public_path('storage/' . strtok($customer->image, '.')));
+        Image::make(public_path('storage/' . $customer->image))
+             ->fit(300, 300)
+             ->save(public_path('storage/small/' . $customer->image));
 
         return redirect()->route('customers.show', compact('customer'))->with('msg', "Customer Updated Successfully");
     }
@@ -106,10 +120,5 @@ class CustomerController extends Controller
         event(new CustomerDeleted($customer));
 
         return redirect()->route('customers.index')->with('msg', "Customer deleted: {$customer->name}");
-    }
-
-    public function validated(CustomerRequest $request)
-    {
-        
     }
 }

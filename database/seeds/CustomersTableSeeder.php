@@ -2,6 +2,7 @@
 
 use App\Customer;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class CustomersTableSeeder extends Seeder
 {
@@ -13,7 +14,9 @@ class CustomersTableSeeder extends Seeder
     public function run()
     {
         Customer::truncate();
-        
+
+        Artisan::call('upload:clear');
+        print Artisan::output();
         factory(Customer::class, 20)->create();
     }
 }
