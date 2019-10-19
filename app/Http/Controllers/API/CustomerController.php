@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('access.control');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +20,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
-        return $customers;
+        $customers = Customer::all(['id', 'name', 'email']);
+        
+        return response()->json($customers, 200);
     }
 
     /**
@@ -45,7 +50,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return $customer;
+        return response()->json($customer->only(['id', 'name', 'email']), 200);
     }
 
     /**
