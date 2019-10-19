@@ -44,6 +44,7 @@ class CustomerController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = $request->image->store('uploads', 'public');
         }
+
         $customer = Customer::create($validated);
 
         event(new NewCustomerAdded($customer));
