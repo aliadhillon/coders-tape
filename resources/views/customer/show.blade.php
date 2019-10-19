@@ -10,7 +10,7 @@
     <div class="profile">
         @include('partials.success')
         @isset($customer->image)
-            <img class="profile-photo" src="{{ Storage::url($customer->image) }}" alt="No image">
+            <a href="{{ Storage::url($customer->image) }}" title="Click here to see full size image"><img class="profile-photo" src="{{ Storage::url($customer->image) }}" alt="No image"></a>
         @endisset
         <p>Name: <strong>{{ $customer->name }}</strong></p>
         <p>Email: {{ $customer->email }}</p>

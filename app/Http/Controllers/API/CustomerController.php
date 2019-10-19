@@ -20,7 +20,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all(['id', 'name', 'email']);
+        $customers = Customer::all();
         
         return response()->json($customers, 200);
     }
@@ -50,7 +50,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return response()->json($customer->only(['id', 'name', 'email']), 200);
+        return response()->json($customer, 200);
     }
 
     /**
