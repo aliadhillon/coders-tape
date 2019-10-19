@@ -2,23 +2,24 @@
 
 namespace App\Console\Commands;
 
+use App\Customer;
 use Illuminate\Console\Command;
 
-class ClearUploadStorage extends Command
+class ClearCustomers extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'upload:clear';
+    protected $signature = 'customers:clear';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This will delete all the photos from public upload folder';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -37,11 +38,8 @@ class ClearUploadStorage extends Command
      */
     public function handle()
     {
-        $upload = 'storage/app/public/uploads/*';
-        $small = 'storage/app/public/uploads/small/*';
-        
-        exec('rm ' . $upload . ' ' . $small . ' 2>null');
-
-        $this->info('Upload Storage has been cleared.');
+        Customer::truncate();
+        $this->info('Customers table has been truncated.');
+        $this->call('upload:clear');
     }
 }

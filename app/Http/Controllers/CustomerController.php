@@ -42,15 +42,11 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        $validated = $request->validated();
-
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->image->store('uploads', 'public');
-        }
+        $validated = $this->validated($request);
 
         $customer = Customer::create($validated);
-
-        Image::make(public_path('storage/' . $customer->image))->fit(300, 300)->save(public_path('storage/small/' . $customer->image));
+       
+        $this->minify($customer->image);
 
         event(new NewCustomerAdded($customer));
 
@@ -88,21 +84,12 @@ class CustomerController extends Controller
      * @return Redirect
      */
     public function update(CustomerRequest $request, Customer $customer)
-    {
-        
-        $validated = $request->validated();
-        if ($request->hasFile('image')) {
-            if($customer->image){
-                Storage::delete($customer->image);   
-            }
-            $validated['image'] = $request->image->store('uploads', 'public');
-        }
-        $customer->update($validated);
+    {   
+        $validated = $this->validated($request);
 
-        // dd(public_path('storage/' . strtok($customer->image, '.')));
-        Image::make(public_path('storage/' . $customer->image))
-             ->fit(300, 300)
-             ->save(public_path('storage/small/' . $customer->image));
+        $customer->update($validated);
+        
+        $this->minify($customer->image);
 
         return redirect()->route('customers.show', compact('customer'))->with('msg', "Customer Updated Successfully");
     }
@@ -120,5 +107,26 @@ class CustomerController extends Controller
         event(new CustomerDeleted($customer));
 
         return redirect()->route('customers.index')->with('msg', "Customer deleted: {$customer->name}");
+    }
+
+    public function validated($request)
+    {
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $request->image->store('uploads', 'public');
+            $validated['image'] = $request->image->hashName();
+        }
+
+        return $validated;
+    }
+
+    public function minify($image)
+    {
+        if($image){
+            Image::make(Storage::disk('uploads')->path($image))
+                ->fit(300, 300)
+                ->save(Storage::disk('uploads')->path('small/' . $image));
+        }
     }
 }

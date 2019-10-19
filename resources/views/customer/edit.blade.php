@@ -12,6 +12,7 @@
 
         <div class="form-group">
             <button class="button" type="submit">Update Customer</button>
+            <a class="link-button" href="{{ route('customers.show', compact('customer')) }}">Cancel</a>
         </div>
     </form>
 @endsection

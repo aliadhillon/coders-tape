@@ -9,7 +9,8 @@
         @include('partials.form')
 
         <div class="form-group">
-            <button type="submit">Add New Customer</button>
+            <button class="button" type="submit">Add New Customer</button>
+             <a class="link-button" href="{{ route('customers.index') }}">Cancel</a>
         </div>
     </form>
 @endsection

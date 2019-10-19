@@ -15,5 +15,8 @@
     <div class="content">
         @yield('content')
     </div>
+    <footer>
+        <p>All Rights Reserved &COPY; 2019</p>
+    </footer>
 </body>
 </html>

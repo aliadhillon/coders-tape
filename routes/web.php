@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Storage;
+
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
 
@@ -34,6 +36,14 @@ Route::prefix('deleted-customers')->as('deleted-customers.')->group(function(){
     Route::post('/{id}', 'DeletedCustomersController@restore')->name('restore');
     Route::delete('/{id}', 'DeletedCustomersController@forceDelete')->name('force-delete');
 });
+
+Route::get('/logs', 'LogController')->name('logs');
+
+Route::get('/download/{photo}', function($photo){
+    if($photo) {
+        return Storage::disk('uploads')->download($photo);
+    }
+})->name('download');
 
 // Route::fallback(function(){
 //     return redirect('/');
