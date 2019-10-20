@@ -36,11 +36,8 @@ class ClearUploadStorage extends Command
      * @return mixed
      */
     public function handle()
-    {
-        $upload = 'storage/app/public/uploads/*';
-        $small = 'storage/app/public/uploads/small/*';
-        
-        exec('rm ' . $upload . ' ' . $small . ' 2>null');
+    {   
+        exec('rm -rfv ' . 'storage/app/public/uploads/*');
 
         $this->info('Upload Storage has been cleared.');
     }

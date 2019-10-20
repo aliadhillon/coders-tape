@@ -19,7 +19,7 @@ class ClearCustomers extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Truncate "customers" table and remove everything from "uploads" directory';
 
     /**
      * Create a new command instance.

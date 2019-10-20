@@ -114,6 +114,9 @@ class CustomerController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
+            if (!Storage::disk('uploads')->exists('small')) {
+                Storage::disk('uploads')->makeDirectory('small');
+            }
             $request->image->store('uploads', 'public');
             $validated['image'] = $request->image->hashName();
         }
