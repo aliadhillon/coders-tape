@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use App\Events\CustomerPermanentlyDeleted;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Events\CustomerPermanentlyDeleted;
 
 class DeletedCustomersController extends Controller
 {
@@ -34,6 +35,8 @@ class DeletedCustomersController extends Controller
         $customer = Customer::onlyTrashed()->findOrFail($id);
 
         $customer->forceDelete();
+
+        Storage::disk('uploads')->delete([$customer->image, 'small/' . $customer->image]);
 
         event(new CustomerPermanentlyDeleted($customer));
 
