@@ -45,8 +45,6 @@ class CustomerController extends Controller
         $validated = $this->validated($request);
 
         $customer = Customer::create($validated);
-       
-        $this->minify($customer->image);
 
         event(new NewCustomerAdded($customer));
 
@@ -83,13 +81,11 @@ class CustomerController extends Controller
      * @param Customer $customer
      * @return Redirect
      */
-    public function update(CustomerRequest $request, Customer $customer)
+    public function update(CustomerRequest $request,Customer $customer)
     {   
-        $validated = $this->validated($request);
+        $validated = $this->validated($request, $customer);
 
         $customer->update($validated);
-        
-        $this->minify($customer->image);
 
         return redirect()->route('customers.show', compact('customer'))->with('msg', "Customer Updated Successfully");
     }
@@ -109,16 +105,18 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')->with('msg', "Customer deleted: {$customer->name}");
     }
 
-    public function validated($request)
+    public function validated($request, $customer = null)
     {
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
-            if (!Storage::disk('uploads')->exists('small')) {
-                Storage::disk('uploads')->makeDirectory('small');
+            if($customer && $customer->image){
+                Storage::disk('uploads')->delete([$customer->image, 'small/' . $customer->image]);
             }
-            $request->image->store('uploads', 'public');
-            $validated['image'] = $request->image->hashName();
+            $image = $request->image->store(null, 'uploads');
+            // $image = Storage::disk('uploads')->putFile(null, $request->image);
+            $validated['image'] = $image;
+            $this->minify($image);
         }
 
         return $validated;
@@ -126,6 +124,9 @@ class CustomerController extends Controller
 
     public function minify($image)
     {
+        if(!Storage::disk('uploads')->exists('small')){
+            Storage::disk('uploads')->makeDirectory('small');
+        }
         if($image){
             Image::make(Storage::disk('uploads')->path($image))
                 ->fit(300, 300)

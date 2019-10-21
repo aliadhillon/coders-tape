@@ -13,7 +13,6 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        Storage::append('uploads/sample.txt', 'This is the first line');
         return view('welcome');
     }
 
