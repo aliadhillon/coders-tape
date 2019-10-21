@@ -23,7 +23,7 @@
     @isset($customer->image)
         <a href="{{ Storage::disk('uploads')->url($customer->image) }}"
            title="Click here to see full size image">
-           <img src="{{ Storage::disk('uploads')->url('small/' . $customer->image) }}"
+           <img src="{{ Storage::disk('uploads')->url($customer->image) }}"
             alt="No image">
         </a>
         <br>
