@@ -17,7 +17,7 @@
             @csrf
             @method('DELETE')
             <a class="link-button inline" href="{{ route('customers.edit', compact('customer')) }}">Edit</a>
-            <button class="red-button" type="submit" onclick="return confirm('Are sure to delete this one?');">Delete</button>
+            <button class="red-button" type="submit" onclick="return confirm('Are you sure?');">Delete</button>
         </form>
     </div>
     @isset($customer->image)

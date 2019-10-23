@@ -14,8 +14,6 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        Alert::toast('This is toast alert', 'success');
-
         return view('welcome');
     }
 

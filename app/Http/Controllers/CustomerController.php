@@ -51,9 +51,9 @@ class CustomerController extends Controller
 
         // Alert::html('New Customer added', "<p>Name: {$customer->name}</p> <p>Email: {$customer->email}</p>", 'success');
 
-        Alert::success('New Customer Added', $customer->name);
+        // Alert::success('New Customer Added', $customer->name);
 
-        return redirect()->route('customers.show', compact('customer'));
+        return redirect()->route('customers.show', compact('customer'))->with('success', 'New Customer Added: '. $customer->name);
     }
 
     /**
@@ -92,9 +92,9 @@ class CustomerController extends Controller
 
         $customer->update($validated);
 
-        Alert::success('Customer Updated Successfully');
+        // Alert::toast('Customer Updated Successfully', 'success')->position('center');
 
-        return redirect()->route('customers.show', compact('customer'));
+        return redirect()->route('customers.show', compact('customer'))->with('success', 'Customer Updated Successfully');
     }
 
     /**
