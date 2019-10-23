@@ -13,8 +13,6 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $file = Storage::disk('uploads')->url('sample.txt');
-        dd($file);
         return view('welcome');
     }
 

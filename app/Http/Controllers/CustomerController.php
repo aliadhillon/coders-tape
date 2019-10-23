@@ -116,7 +116,7 @@ class CustomerController extends Controller
             $image = $request->image->store(null, 'uploads');
             // $image = Storage::disk('uploads')->putFile(null, $request->image);
             $validated['image'] = $image;
-            // $this->minify($image);
+            $this->minify($image);
         }
 
         return $validated;
@@ -127,9 +127,10 @@ class CustomerController extends Controller
         if(!Storage::disk('uploads')->exists('small')){
             Storage::disk('uploads')->makeDirectory('small');
         }
-        if($image){
-            $mini = Image::make(Storage::disk('uploads')->url($image))->fit(300, 300);
-            Storage::disk('uploads')->putFile('small', $mini);
+        if ($image) {
+            Image::make(Storage::disk('uploads')->path($image))
+                ->fit(300, 300)
+                ->save(Storage::disk('uploads')->path('small/' . $image));
         }
     }
 }

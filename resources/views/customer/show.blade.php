@@ -21,9 +21,9 @@
         </form>
     </div>
     @isset($customer->image)
-        <a href="{{ Storage::disk('uploads')->url($customer->image) }}"
+        <a href="{{ asset('storage/uploads/' . $customer->image) }}"
            title="Click here to see full size image">
-           <img src="{{ Storage::disk('uploads')->url($customer->image) }}"
+           <img src="{{ Storage::disk('uploads')->url('small/' . $customer->image) }}"
             alt="No image">
         </a>
         <br>
