@@ -8,6 +8,7 @@ use App\Events\NewCustomerAdded;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\CustomerRequest;
 use Illuminate\Support\Facades\Storage;
+use Alert;
 
 class CustomerController extends Controller
 {
@@ -48,6 +49,10 @@ class CustomerController extends Controller
 
         event(new NewCustomerAdded($customer));
 
+        // Alert::html('New Customer added', "<p>Name: {$customer->name}</p> <p>Email: {$customer->email}</p>", 'success');
+
+        Alert::success('New Customer Added', $customer->name);
+
         return redirect()->route('customers.show', compact('customer'));
     }
 
@@ -87,7 +92,9 @@ class CustomerController extends Controller
 
         $customer->update($validated);
 
-        return redirect()->route('customers.show', compact('customer'))->with('msg', "Customer Updated Successfully");
+        Alert::success('Customer Updated Successfully');
+
+        return redirect()->route('customers.show', compact('customer'));
     }
 
     /**

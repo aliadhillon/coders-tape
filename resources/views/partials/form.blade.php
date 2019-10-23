@@ -25,7 +25,7 @@
 <div class="form-group">
     <label for="image">Profile Photo</label>
     <br><br>
-    <input class="@error('email') invalid @enderror"
+    <input class="@error('image') invalid @enderror"
            type="file" name="image" id="image" autocomplete="off"
            value="{{ old('image', $customer->image) }}">
     @error('image')
