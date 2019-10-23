@@ -18,5 +18,6 @@
     <footer>
         <p>All Rights Reserved &COPY; 2019</p>
     </footer>
+    @include('sweetalert::alert')
 </body>
 </html>
