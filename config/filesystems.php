@@ -48,10 +48,10 @@ return [
             'root' => storage_path('app'),
         ],
 
-        // 'uploads' => [
-        //     'driver' => 'dropbox',
-        //     'authorization_token' => '59tiMdtpUsAAAAAAAAAAj0VjDoU8IgJZRG0__eKaHD6ULNuhAfhwNOvhCO_Zi6_8',
-        // ],
+        'uploads' => [
+            'driver' => 'dropbox',
+            'authorization_token' => env('DROPBOX_TOKEN'),
+        ],
 
         'all' => [
             'driver' => 'local',
